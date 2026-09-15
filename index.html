@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prithivi Raj P.A | Computer Science Student & Portfolio</title>
+    <meta name="description" content="Portfolio of Prithivi Raj P.A - B.E. CSE Student at Sathyabama Institute of Science and Technology. Specializing in Python, AI/GenAI, and Frontend Development.">
+    <meta name="author" content="Prithivi Raj P.A">
+
+    <!-- Open Graph / Social Media Sharing Meta Tags -->
+    <meta property="og:title" content="Prithivi Raj P.A | Personal Portfolio">
+    <meta property="og:description" content="Computer Science student specializing in Python, Machine Learning, Web Development, and Generative AI. Explore projects and experience.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/Prithiviraj-08">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            950: '#083344',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- html2pdf.js for Client-side PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Print formatting for PDF downloads */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-resume, #printable-resume * {
+                visibility: visible;
+            }
+            #printable-resume {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white !important;
+                color: black !important;
+                padding: 20px;
+            }
+        }
+
+        .pdf-render-target {
+            background-color: #ffffff !important;
+            color: #111827 !important;
+            padding: 2rem !important;
+        }
+        .pdf-render-target * {
+            color: #111827 !important;
+            border-color: #e5e7eb !important;
+        }
+        .pdf-render-target .text-cyan-400 {
+            color: #0284c7 !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950">
+
+    <header class="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="text-lg font-bold text-white tracking-tight flex items-center gap-2">
+                <span class="w-8 h-8 rounded-lg bg-cyan-500 text-slate-950 flex items-center justify-center font-extrabold text-sm">PR</span>
+                <span>Prithivi Raj <span class="text-cyan-400">P.A</span></span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+                <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#education" class="hover:text-cyan-400 transition-colors">Education</a>
+                <a href="#certifications" class="hover:text-cyan-400 transition-colors">Certifications</a>
+            </nav>
+
+            <!-- Quick Action Button & Mobile Toggle -->
+            <div class="flex items-center gap-3">
+                <button onclick="openShareModal()" class="inline-flex items-center justify-center px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-400 font-semibold text-xs border border-cyan-500/30 transition-all gap-1.5" title="Share & Copy Links">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span class="hidden sm:inline">Share Links</span>
+                </button>
+
+                <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition-all shadow-md shadow-cyan-500/10 hover:shadow-cyan-500/25">
+                    Contact Me
+                </a>
+                
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Popup -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800 px-4 pt-3 pb-6 space-y-2">
+            <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-400">About</a>
+            <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-400">Skills</a>
+            <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-400">Experience</a>
+            <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-400">Projects</a>
+            <a href="#education" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-400">Education</a>
+            <a href="#certifications" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-cyan-400">Certifications</a>
+            <button onclick="openShareModal()" class="w-full text-left mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-cyan-400 bg-cyan-950/40 border border-cyan-800/50">
+                <i class="fa-solid fa-share-nodes mr-2"></i> Share & Copy Links
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-24 pb-16 space-y-20">
+        
+        <section id="hero" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-12 relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+                    <div class="space-y-6 text-center lg:text-left max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 text-xs font-medium">
+                            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                            Computer Science & Engineering Student
+                        </div>
+                        
+                        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                            Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Prithivi Raj P.A</span>
+                        </h1>
+                        
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Aspiring Computer Science Engineer passionate about building scalable web applications, data-driven Machine Learning systems, and LLM-powered applications. Currently pursuing B.E. CSE at Sathyabama Institute of Science and Technology.
+                        </p>
+
+                        <!-- Contact Badges -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs text-slate-300 pt-2">
+                            <span class="flex items-center gap-1.5 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                                <i class="fa-solid fa-location-dot text-cyan-400"></i> Neyveli, Tamil Nadu, India
+                            </span>
+                            <button onclick="copyToClipboard('prithivi3349t@gmail.com', 'Email')" class="flex items-center gap-1.5 bg-slate-900/80 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-800 transition-colors text-slate-300">
+                                <i class="fa-solid fa-envelope text-cyan-400"></i> prithivi3349t@gmail.com
+                            </button>
+                            <button onclick="copyToClipboard('+918838347748', 'Phone Number')" class="flex items-center gap-1.5 bg-slate-900/80 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-800 transition-colors text-slate-300">
+                                <i class="fa-solid fa-phone text-cyan-400"></i> +91 8838347748
+                            </button>
+                        </div>
+
+                        <!-- CTA Actions -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                            <a href="#projects" class="px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-cyan-500/20">
+                                View My Work
+                            </a>
+                            <button onclick="openResumeModal()" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-cyan-500/30 font-bold text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-file-pdf"></i> Download Résumé
+                            </button>
+                        </div>
+
+                        <!-- Social Profiles -->
+                        <div class="flex items-center justify-center lg:justify-start gap-4 pt-4">
+                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Connect:</span>
+                            <a href="https://www.linkedin.com/in/prithivi-raj-152472333" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg bg-slate-800/80 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 transition-all border border-slate-700/60 relative z-10 cursor-pointer flex items-center gap-2 text-xs font-medium" aria-label="LinkedIn Profile">
+                                <i class="fa-brands fa-linkedin text-lg text-blue-400"></i> LinkedIn
+                            </a>
+                            <a href="https://github.com/Prithiviraj-08" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg bg-slate-800/80 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 transition-all border border-slate-700/60 relative z-10 cursor-pointer flex items-center gap-2 text-xs font-medium" aria-label="GitHub Profile">
+                                <i class="fa-brands fa-github text-lg text-slate-200"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Highlight Card -->
+                    <div class="w-full lg:w-80 glass-card p-6 rounded-2xl space-y-4 border border-slate-800">
+                        <div class="text-xs font-semibold uppercase text-cyan-400 tracking-wider">Quick Highlights</div>
+                        <div class="space-y-3 text-sm">
+                            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800/80">
+                                <div class="text-xs text-slate-400">Current CGPA</div>
+                                <div class="text-xl font-bold text-white">8.0 / 10.0</div>
+                                <div class="text-[11px] text-slate-400">B.E. CSE (2023–2027)</div>
+                            </div>
+                            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800/80">
+                                <div class="text-xs text-slate-400">Key Domain</div>
+                                <div class="text-sm font-bold text-white">Full Stack & GenAI</div>
+                                <div class="text-[11px] text-slate-400">Python, React, FastApi, LLMs</div>
+                            </div>
+                            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800/80">
+                                <div class="text-xs text-slate-400">Internship Roles</div>
+                                <div class="text-sm font-bold text-white">Frontend Developer</div>
+                                <div class="text-[11px] text-slate-400">Techzarinfo & NLC India</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-6 bg-cyan-500 rounded-full"></span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white">About Me</h2>
+                </div>
+                <div class="glass-card p-6 sm:p-8 rounded-2xl leading-relaxed text-slate-300 text-sm sm:text-base space-y-4">
+                    <p>
+                        Currently pursuing my Bachelor of Engineering in Computer Science and Engineering at <strong class="text-white">Sathyabama Institute of Science and Technology</strong>. As a fresher, I am seeking an opportunity to work in a challenging environment where I can apply my skills and knowledge, contribute to the growth of the organization, and continuously improve my technical skills to keep up with advancements in computer technology.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs sm:text-sm">
+                        <div class="flex items-center gap-2 text-slate-300">
+                            <i class="fa-solid fa-graduation-cap text-cyan-400"></i>
+                            <span>Degree: <strong>B.E. Computer Science & Engineering</strong></span>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-300">
+                            <i class="fa-solid fa-language text-cyan-400"></i>
+                            <span>Languages: <strong>English, Tamil</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-6 bg-cyan-500 rounded-full"></span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white">Technical Skills</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="glass-card p-5 rounded-2xl space-y-3">
+                        <div class="flex items-center gap-3 text-cyan-400 font-semibold text-sm">
+                            <i class="fa-solid fa-code text-lg"></i>
+                            <h3>Programming & Web</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Python</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">HTML</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">CSS</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">JavaScript</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">React.js</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">FastAPI</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl space-y-3">
+                        <div class="flex items-center gap-3 text-cyan-400 font-semibold text-sm">
+                            <i class="fa-solid fa-brain text-lg"></i>
+                            <h3>AI & Generative AI</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Machine Learning</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">LLMs</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">RAG</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">LangChain</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Vector Databases</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">MCP</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl space-y-3">
+                        <div class="flex items-center gap-3 text-cyan-400 font-semibold text-sm">
+                            <i class="fa-solid fa-square-poll-vertical text-lg"></i>
+                            <h3>Data & Libraries</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">NumPy</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Pandas</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Matplotlib</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Scikit-learn</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Power BI</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Tableau</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl space-y-3">
+                        <div class="flex items-center gap-3 text-cyan-400 font-semibold text-sm">
+                            <i class="fa-solid fa-database text-lg"></i>
+                            <h3>Database & Tools</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">MySQL</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Git</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">GitHub</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl space-y-3">
+                        <div class="flex items-center gap-3 text-cyan-400 font-semibold text-sm">
+                            <i class="fa-solid fa-cloud text-lg"></i>
+                            <h3>Cloud & DevOps</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">AWS</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Linux</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Docker</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">CI/CD</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl space-y-3">
+                        <div class="flex items-center gap-3 text-cyan-400 font-semibold text-sm">
+                            <i class="fa-solid fa-cubes text-lg"></i>
+                            <h3>Core Computer Science</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">DSA</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">DBMS</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">OS</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">OOP</span>
+                            <span class="px-2.5 py-1 bg-slate-800 rounded-lg text-slate-200 border border-slate-700">Computer Networks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-6 bg-cyan-500 rounded-full"></span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white">Internship Experience</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="glass-card p-6 rounded-2xl space-y-3 border-l-4 border-l-cyan-500">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                            <h3 class="text-base font-bold text-white">Frontend Developer Intern</h3>
+                            <span class="text-xs font-semibold text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800/40 w-fit">July 2025</span>
+                        </div>
+                        <div class="text-xs font-medium text-slate-400">Techzarinfo Pvt. Ltd.</div>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Built a responsive ERP portal using HTML, CSS, and JavaScript, focusing on modern component structure and seamless user experience.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl space-y-3 border-l-4 border-l-cyan-500">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                            <h3 class="text-base font-bold text-white">Frontend Developer Intern</h3>
+                            <span class="text-xs font-semibold text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800/40 w-fit">December 2024</span>
+                        </div>
+                        <div class="text-xs font-medium text-slate-400">NLC India Limited</div>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Learned HTML, CSS, and JavaScript and developed web projects to gain practical frontend development experience in an industrial enterprise environment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-6 bg-cyan-500 rounded-full"></span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white">Projects</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-bold text-lg">
+                                <i class="fa-solid fa-plane-departure"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-white leading-snug">Terminal Air Traffic Congestion Prediction</h3>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Built a GNN-based Digital Twin application using Python and multimodal spatiotemporal data to predict terminal air traffic congestion levels and identify potential traffic bottlenecks for improved airport management.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-800 text-cyan-400 rounded">Python</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-800 text-cyan-400 rounded">GNN / GCN</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-800 text-cyan-400 rounded">Digital Twin</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-bold text-lg">
+                                <i class="fa-solid fa-terminal"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-white leading-snug">Text to SQL Query Generator Using LLM</h3>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Built a GenAI application using Python and SQL that converts natural language questions into SQL queries using an LLM and retrieves data from a relational database through an interactive web interface.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-800 text-cyan-400 rounded">GenAI</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-800 text-cyan-400 rounded">LLM</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-800 text-cyan-400 rounded">Python & SQL</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-950/80 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-bold text-lg">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-white leading-snug">Walmart Sales Data Analysis</h3>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Cleaned, transformed, and analyzed Walmart sales data using Python, Pandas, and MySQL to generate meaningful business insights and improve decision-making.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-800 text-cyan-400 rounded">Python</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-800 text-cyan-400 rounded">Pandas</span>
+                            <span class="text-[10px] px-2 py-0.5 bg-slate-800 text-cyan-400 rounded">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Education -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2 h-6 bg-cyan-500 rounded-full"></span>
+                        <h2 class="text-xl font-bold text-white">Education</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="glass-card p-5 rounded-2xl space-y-1">
+                            <div class="flex justify-between items-start">
+                                <h3 class="text-sm font-bold text-white">B.E. Computer Science and Engineering</h3>
+                                <span class="text-xs text-cyan-400 font-semibold">2023–2027</span>
+                            </div>
+                            <div class="text-xs text-slate-400">Sathyabama Institute of Science and Technology</div>
+                            <div class="text-xs font-semibold text-slate-200 pt-1">CGPA: 8.0</div>
+                        </div>
+
+                        <div class="glass-card p-5 rounded-2xl space-y-1">
+                            <div class="flex justify-between items-start">
+                                <h3 class="text-sm font-bold text-white">Higher Secondary Certificate (HSC) - CBSE</h3>
+                                <span class="text-xs text-cyan-400 font-semibold">2022–2023</span>
+                            </div>
+                            <div class="text-xs text-slate-400">Jawahar Higher Secondary School</div>
+                            <div class="text-xs font-semibold text-slate-200 pt-1">Percentage: 62.2%</div>
+                        </div>
+
+                        <div class="glass-card p-5 rounded-2xl space-y-1">
+                            <div class="flex justify-between items-start">
+                                <h3 class="text-sm font-bold text-white">Secondary School Certificate (SSC) - CBSE</h3>
+                                <span class="text-xs text-cyan-400 font-semibold">2020–2021</span>
+                            </div>
+                            <div class="text-xs text-slate-400">Jawahar Higher Secondary School</div>
+                            <div class="text-xs font-semibold text-slate-200 pt-1">Percentage: 62.4%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div id="certifications" class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2 h-6 bg-cyan-500 rounded-full"></span>
+                        <h2 class="text-xl font-bold text-white">Certifications</h2>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="glass-card p-5 rounded-2xl flex items-start gap-3">
+                            <i class="fa-solid fa-award text-cyan-400 text-xl mt-0.5"></i>
+                            <div>
+                                <h3 class="text-sm font-bold text-white">TCS iON Career Edge Young Professional</h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Communication, Time Management, Professional Etiquette</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-5 rounded-2xl flex items-start gap-3">
+                            <i class="fa-solid fa-certificate text-cyan-400 text-xl mt-0.5"></i>
+                            <div>
+                                <h3 class="text-sm font-bold text-white">NPTEL - Introduction to Large Language Models (LLMs)</h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Foundational and applied concepts in LLM architecture</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-5 rounded-2xl flex items-start gap-3">
+                            <i class="fa-solid fa-microchip text-cyan-400 text-xl mt-0.5"></i>
+                            <div>
+                                <h3 class="text-sm font-bold text-white">NPTEL - Internet of Things (IoT)</h3>
+                                <p class="text-xs text-slate-400 mt-0.5">IoT sensors, hardware protocols, and connected architectures</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-6 bg-cyan-500 rounded-full"></span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white">Contact Me</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Direct Info -->
+                    <div class="space-y-4">
+                        <div class="glass-card p-6 rounded-2xl space-y-4">
+                            <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Direct Reach</div>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex items-center gap-3 text-slate-300">
+                                    <i class="fa-solid fa-envelope text-cyan-400 text-base"></i>
+                                    <span class="truncate">prithivi3349t@gmail.com</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-slate-300">
+                                    <i class="fa-solid fa-phone text-cyan-400 text-base"></i>
+                                    <span>+91 8838347748</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-slate-300">
+                                    <i class="fa-solid fa-location-dot text-cyan-400 text-base"></i>
+                                    <span>Neyveli, Tamil Nadu, India</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- External Links -->
+                        <div class="glass-card p-6 rounded-2xl space-y-3">
+                            <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Professional Networks</div>
+                            <div class="flex flex-col gap-2">
+                                <a href="https://www.linkedin.com/in/prithivi-raj-152472333" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-between p-3 rounded-xl bg-slate-900/80 text-sm text-slate-200 hover:text-cyan-400 hover:border-cyan-800/50 border border-slate-800 transition-all cursor-pointer">
+                                    <span class="flex items-center gap-2"><i class="fa-brands fa-linkedin text-blue-400"></i> LinkedIn Profile</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500"></i>
+                                </a>
+                                <a href="https://github.com/Prithiviraj-08" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-between p-3 rounded-xl bg-slate-900/80 text-sm text-slate-200 hover:text-cyan-400 hover:border-cyan-800/50 border border-slate-800 transition-all cursor-pointer">
+                                    <span class="flex items-center gap-2"><i class="fa-brands fa-github text-slate-300"></i> GitHub Profile</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-500"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Simulation -->
+                    <div class="lg:col-span-2 glass-card p-6 sm:p-8 rounded-2xl">
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-1.5">
+                                    <label for="name" class="text-xs font-medium text-slate-300">Your Name</label>
+                                    <input type="text" id="name" required placeholder="John Doe" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label for="email" class="text-xs font-medium text-slate-300">Your Email</label>
+                                    <input type="email" id="email" required placeholder="john@example.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500">
+                                </div>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="subject" class="text-xs font-medium text-slate-300">Subject</label>
+                                <input type="text" id="subject" required placeholder="Project Inquiry / Job Opportunity" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500">
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="message" class="text-xs font-medium text-slate-300">Message</label>
+                                <textarea id="message" rows="4" required placeholder="Hello Prithivi, I came across your portfolio and..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm transition-all shadow-md shadow-cyan-500/20">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-800/80 bg-slate-950 py-8 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                &copy; <span id="current-year">2026</span> Prithivi Raj P.A. Built for web deployment.
+            </div>
+            <div class="flex items-center gap-4 text-slate-400">
+                <a href="https://www.linkedin.com/in/prithivi-raj-152472333" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400">LinkedIn</a>
+                <a href="https://github.com/Prithiviraj-08" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400">GitHub</a>
+                <a href="mailto:prithivi3349t@gmail.com" class="hover:text-cyan-400">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Resume Modal -->
+    <div id="resume-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+            <div class="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2 text-cyan-400 font-bold text-sm sm:text-base">
+                    <i class="fa-solid fa-file-pdf"></i> Prithivi Raj P.A - Résumé Overview
+                </div>
+                <button onclick="closeResumeModal()" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Printable Content -->
+            <div class="p-6 overflow-y-auto space-y-4 text-xs sm:text-sm text-slate-300" id="printable-resume">
+                <div class="border-b border-slate-800 pb-3">
+                    <h3 class="text-xl font-bold text-white">PRITHIVI RAJ P.A</h3>
+                    <p class="text-xs text-slate-400 mt-1">Neyveli, Tamilnadu, India | +91 8838347748 | prithivi3349t@gmail.com</p>
+                    <p class="text-xs text-slate-400">LinkedIn: linkedin.com/in/prithivi-raj-152472333 | GitHub: github.com/Prithiviraj-08</p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-1">Objective</h4>
+                    <p class="text-xs text-slate-300">
+                        Currently pursuing my Bachelor of Engineering in Computer Science and Engineering at Sathyabama Institute of Science and Technology. As a fresher, I am seeking an opportunity to work in a challenging environment where I can apply my skills and knowledge, contribute to the growth of the organization, and continuously improve my technical skills.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-2">Education</h4>
+                    <ul class="space-y-1.5 text-xs">
+                        <li><strong class="text-white">B.E. Computer Science and Engineering</strong> (2023–2027) - Sathyabama Institute of Science and Technology | CGPA: 8.0</li>
+                        <li><strong class="text-white">HSC - CBSE</strong> (2022–2023) - Jawahar Higher Secondary School | 62.2%</li>
+                        <li><strong class="text-white">SSC - CBSE</strong> (2020–2021) - Jawahar Higher Secondary School | 62.4%</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-1">Key Technical Skills</h4>
+                    <p class="text-xs text-slate-300">
+                        Python, Machine Learning, LLMs, RAG, LangChain, HTML, CSS, JavaScript, React.js, FastAPI, MySQL, Power BI, AWS, Linux, Docker, Git.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-1">Internships</h4>
+                    <p class="text-xs text-slate-300"><strong>Techzarinfo Pvt. Ltd.</strong> (July 2025) - Frontend Developer Intern</p>
+                    <p class="text-xs text-slate-300"><strong>NLC India Limited</strong> (December 2024) - Frontend Developer Intern</p>
+                </div>
+            </div>
+
+            <!-- Modal Action Footer -->
+            <div class="p-4 border-t border-slate-800 bg-slate-950 flex flex-wrap gap-2 justify-end">
+                <button onclick="downloadTextResume()" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-200 text-xs font-semibold hover:bg-slate-700 flex items-center gap-1.5">
+                    <i class="fa-solid fa-file-lines"></i> Download TXT
+                </button>
+                <button onclick="printResume()" class="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 text-xs font-bold hover:bg-cyan-400 flex items-center gap-1.5 shadow-md shadow-cyan-500/20">
+                    <i class="fa-solid fa-file-pdf"></i> Save / Print PDF
+                </button>
+                <button onclick="closeResumeModal()" class="px-3.5 py-2 rounded-xl bg-slate-900 text-slate-400 text-xs font-semibold hover:text-white">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share & Links Modal -->
+    <div id="share-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md flex flex-col overflow-hidden shadow-2xl space-y-4 p-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2 text-cyan-400 font-bold text-base">
+                    <i class="fa-solid fa-link"></i> Social & Portfolio Links
+                </div>
+                <button onclick="closeShareModal()" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <p class="text-xs text-slate-300">Tap open to launch directly or copy to share:</p>
+
+            <div class="space-y-3">
+                <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <div class="text-[10px] text-cyan-400 font-semibold uppercase">LinkedIn URL</div>
+                        <div class="text-xs text-slate-200 font-mono truncate max-w-[160px]">https://www.linkedin.com/in/prithivi-raj-152472333</div>
+                    </div>
+                    <div class="flex gap-1.5">
+                        <a href="https://www.linkedin.com/in/prithivi-raj-152472333" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 bg-slate-800 text-cyan-400 rounded-lg text-xs font-bold hover:bg-slate-700">Open</a>
+                        <button onclick="copyToClipboard('https://www.linkedin.com/in/prithivi-raj-152472333', 'LinkedIn Link')" class="px-2.5 py-1.5 bg-cyan-500 text-slate-950 rounded-lg text-xs font-bold hover:bg-cyan-400">Copy</button>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <div class="text-[10px] text-cyan-400 font-semibold uppercase">GitHub URL</div>
+                        <div class="text-xs text-slate-200 font-mono truncate max-w-[160px]">https://github.com/Prithiviraj-08</div>
+                    </div>
+                    <div class="flex gap-1.5">
+                        <a href="https://github.com/Prithiviraj-08" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 bg-slate-800 text-cyan-400 rounded-lg text-xs font-bold hover:bg-slate-700">Open</a>
+                        <button onclick="copyToClipboard('https://github.com/Prithiviraj-08', 'GitHub Link')" class="px-2.5 py-1.5 bg-cyan-500 text-slate-950 rounded-lg text-xs font-bold hover:bg-cyan-400">Copy</button>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <div class="text-[10px] text-cyan-400 font-semibold uppercase">Email Address</div>
+                        <div class="text-xs text-slate-200 font-mono truncate max-w-[160px]">prithivi3349t@gmail.com</div>
+                    </div>
+                    <div class="flex gap-1.5">
+                        <a href="mailto:prithivi3349t@gmail.com" class="px-2.5 py-1.5 bg-slate-800 text-cyan-400 rounded-lg text-xs font-bold hover:bg-slate-700">Email</a>
+                        <button onclick="copyToClipboard('prithivi3349t@gmail.com', 'Email Address')" class="px-2.5 py-1.5 bg-cyan-500 text-slate-950 rounded-lg text-xs font-bold hover:bg-cyan-400">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="closeShareModal()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold">
+                Close Window
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+    <script>
+        // Set dynamic current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Navigation Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    menuIcon.className = 'fa-solid fa-bars text-xl';
+                } else {
+                    menuIcon.className = 'fa-solid fa-xmark text-xl';
+                }
+            });
+        }
+
+        // Close mobile nav when clicking any link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-xl';
+            });
+        });
+
+        // Silent clipboard copy helper
+        function copyToClipboardSilent(text) {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text);
+                } else {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.style.position = "fixed";
+                    textArea.style.left = "-999999px";
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                }
+            } catch(e) {}
+        }
+
+        // Copy to clipboard helper with Toast
+        function copyToClipboard(text, label) {
+            copyToClipboardSilent(text);
+            showToast(`${label} copied to clipboard!`);
+        }
+
+        // Share Modal Controls
+        function openShareModal() {
+            document.getElementById('share-modal').classList.remove('hidden');
+        }
+
+        function closeShareModal() {
+            document.getElementById('share-modal').classList.add('hidden');
+        }
+
+        // Custom Toast Notification
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'pointer-events-auto bg-slate-800 border border-cyan-500/40 text-slate-100 text-xs font-medium px-4 py-3 rounded-xl shadow-xl flex items-center gap-2 transform transition-all duration-300 translate-y-2 opacity-0';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-cyan-400"></i> ${message}`;
+            
+            container.appendChild(toast);
+
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 50);
+
+            // Animate out & remove
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Resume Modal Controls
+        function openResumeModal() {
+            document.getElementById('resume-modal').classList.remove('hidden');
+        }
+
+        function closeResumeModal() {
+            document.getElementById('resume-modal').classList.add('hidden');
+        }
+
+        function printResume() {
+            const element = document.getElementById('printable-resume');
+            showToast("Preparing PDF generation...");
+
+            if (typeof html2pdf !== 'undefined') {
+                element.classList.add('pdf-render-target');
+                const opt = {
+                    margin:       [0.4, 0.4, 0.4, 0.4],
+                    filename:     'Prithivi_Raj_PA_Resume.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+                    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+                };
+
+                html2pdf().set(opt).from(element).save().then(() => {
+                    element.classList.remove('pdf-render-target');
+                    showToast("PDF downloaded successfully!");
+                }).catch(err => {
+                    element.classList.remove('pdf-render-target');
+                    fallbackPrint();
+                });
+            } else {
+                fallbackPrint();
+            }
+        }
+
+        function fallbackPrint() {
+            try {
+                window.print();
+            } catch (e) {
+                showToast("Print blocked. Use Copy Text option.");
+            }
+        }
+
+        function getRawResumeString() {
+            return `PRITHIVI RAJ P.A
+Neyveli, Tamilnadu, India | +91 8838347748 | prithivi3349t@gmail.com
+LinkedIn: https://www.linkedin.com/in/prithivi-raj-152472333 | GitHub: https://github.com/Prithiviraj-08
+
+==================================================
+OBJECTIVE
+==================================================
+Currently pursuing my Bachelor of Engineering in Computer Science and Engineering at Sathyabama Institute of Science and Technology. As a fresher, I am seeking an opportunity to work in a challenging environment where I can apply my skills and knowledge, contribute to the growth of the organization, and continuously improve my technical skills.
+
+==================================================
+EDUCATION
+==================================================
+• Bachelor of Engineering (Computer Science & Engineering) (2023 - 2027)
+  Sathyabama Institute of Science and Technology | CGPA: 8.0
+• Higher Secondary Certificate (HSC - CBSE) (2022 - 2023)
+  Jawahar Higher Secondary School | 62.2%
+• Secondary School Certificate (SSC - CBSE) (2020 - 2021)
+  Jawahar Higher Secondary School | 62.4%
+
+==================================================
+TECHNICAL SKILLS
+==================================================
+• Programming Language: Python
+• Python Libraries: NumPy, Pandas, Matplotlib, Scikit-learn
+• Web Development: HTML, CSS, JavaScript, React.js, FastAPI
+• Database: MySQL
+• Data & Visualization: Power BI, Tableau
+• AI & Generative AI: Machine Learning, LLMs, RAG, LangChain, Vector Databases, MCP
+• Cloud & DevOps: AWS, Linux, Docker, CI/CD
+• Version Control: Git, GitHub
+• Core CS: DSA, DBMS, OS, OOP, Computer Networks
+
+==================================================
+INTERNSHIPS
+==================================================
+• Techzarinfo Pvt. Ltd. — Frontend Developer Intern (July 2025)
+  - Built a responsive ERP portal using HTML, CSS, JavaScript.
+• NLC India Limited — Frontend Developer Intern (December 2024)
+  - Learned HTML, CSS, JavaScript and developed small web projects.
+
+==================================================
+PROJECTS
+==================================================
+1. Terminal Air Traffic Congestion Prediction
+   - GNN-based Digital Twin application using Python and multimodal spatiotemporal data.
+2. Text to SQL Query Generator Using LLM
+   - GenAI application using Python, SQL, and LLM to convert natural language queries.
+3. Walmart Sales Data Analysis
+   - Cleaned, transformed, and analyzed sales data using Python, Pandas, and MySQL.
+
+==================================================
+CERTIFICATIONS & LANGUAGES
+==================================================
+• TCS iON Career Edge Young Professional
+• NPTEL - Introduction to Large Language Models (LLMs)
+• NPTEL - Internet of Things (IoT)
+• Languages: English, Tamil
+`;
+        }
+
+        function downloadTextResume() {
+            const resumeContent = getRawResumeString();
+            try {
+                const blob = new Blob([resumeContent], { type: 'text/plain;charset=utf-8' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'Prithivi_Raj_PA_Resume.txt';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast("Résumé TXT downloaded!");
+            } catch(e) {
+                copyToClipboard(getRawResumeString(), "Full Résumé Text");
+            }
+        }
+
+        // Form Submission Simulation
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            showToast(`Thank you, ${name}! Your message was simulated successfully.`);
+            document.getElementById('contact-form').reset();
+        }
+    </script>
+</body>
+</html>
